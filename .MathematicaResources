@@ -1,0 +1,10 @@
+Resources[
+    Version[1],
+    Sources[
+        Directory["~"]
+    ],
+    ExecutionBuildCommand["<<xActInstaller`"],
+    Paclet[
+        FunctionPaclet[False]
+    ]
+]

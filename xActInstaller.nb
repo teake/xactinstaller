@@ -1,0 +1,343 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["xActInstaller tests", "Title"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  "\"\<https://copyremote.googlecode.com/hg/CopyRemote/CopyRemote.m\>\"", 
+  "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Configuration variables", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"??", "xActInstaller`Private`xCoreDateToVersion"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["xActInstaller`Private`xCoreDateToVersion", "Print", "PrintUsage",
+ CellTags->"Info3584706268-3817789"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "xActInstaller`Private`xCoreDateToVersion", "[", 
+           "xActInstaller`Private`date$_", "]"}], "/;", 
+          RowBox[{"OrderedQ", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"2013", ",", "1", ",", "27"}], "}"}], ",", 
+             "xActInstaller`Private`date$"}], "}"}], "]"}]}], 
+         "=", "\<\"1.0.5\"\>"}]},
+       {" "},
+       {
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "xActInstaller`Private`xCoreDateToVersion", "[", 
+           "xActInstaller`Private`date$_", "]"}], "/;", 
+          RowBox[{"OrderedQ", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"2012", ",", "5", ",", "5"}], "}"}], ",", 
+             "xActInstaller`Private`date$"}], "}"}], "]"}]}], 
+         "=", "\<\"1.0.4\"\>"}]},
+       {" "},
+       {
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "xActInstaller`Private`xCoreDateToVersion", "[", 
+           "xActInstaller`Private`date$_", "]"}], "/;", 
+          RowBox[{"OrderedQ", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+             "xActInstaller`Private`date$"}], "}"}], "]"}]}], "=", "Null"}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  Definition[xActInstaller`Private`xCoreDateToVersion],
+  Editable->False]], "Print",
+ CellTags->"Info3584706268-3817789"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xCoreDateToVersion", "[", 
+  RowBox[{"{", 
+   RowBox[{"0", ",", "0", ",", "0"}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xCoreDateToVersion", "[", 
+  RowBox[{"{", 
+   RowBox[{"2012", ",", "5", ",", "4"}], "}"}], "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xCoreDateToVersion", "[", 
+  RowBox[{"{", 
+   RowBox[{"2012", ",", "5", ",", "5"}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"1.0.4\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xCoreDateToVersion", "[", 
+  RowBox[{"{", 
+   RowBox[{"2013", ",", "1", ",", "27"}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"1.0.5\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xCoreDateToVersion", "[", 
+  RowBox[{"{", 
+   RowBox[{"2013", ",", "6", ",", "27"}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"1.0.5\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xActZipURL", "[", "\"\<1.0.5\>\"", 
+  "]"}]], "Input"],
+
+Cell[BoxData["\<\"http://xact.es/download/xAct_1.0.5.tgz\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`xActZipURL", "[", "\"\<1.1.0\>\"", 
+  "]"}]], "Input"],
+
+Cell[BoxData["\<\"http://xact.es/download/xAct_1.1.0.tgz\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["xActInstaller`Private`xActLatest"], "Input"],
+
+Cell[BoxData["\<\"1.0.5\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["xActInstaller`Private`defaultInstallDir"], "Input"],
+
+Cell[BoxData["\<\"/Users/Teake/Library/Mathematica/Applications\"\>"], \
+"Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Auxiliary functions", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`VersionGreaterEqual", "[", 
+  RowBox[{"\"\<1.0.5\>\"", ",", "\"\<1.0.4\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["True"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`VersionGreaterEqual", "[", 
+  RowBox[{"\"\<1.0.5\>\"", ",", "\"\<1.1.4\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["False"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`VersionGreaterEqual", "[", 
+  RowBox[{"\"\<1.0.5.0\>\"", ",", "\"\<1.0.5.0.0.0\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["True"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`VersionGreaterEqual", "[", 
+  RowBox[{"\"\<1.0.5.0\>\"", ",", "\"\<1.0.5.0.0.1\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["False"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`PackageListGetDir", "[", 
+  RowBox[{"{", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir\>\""}], "}"}],
+    "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"dir\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`PackageListGetDir", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir1\>\""}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir2\>\""}], 
+     "}"}]}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"dir1\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`PackageListSetDir", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir1\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir2\>\""}], 
+      "}"}]}], "}"}], ",", "\"\<newdir\>\""}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"\"\>", ",", "\<\"\"\>", ",", "\<\"\"\>", 
+     ",", "\<\"newdir\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"\"\>", ",", "\<\"\"\>", ",", "\<\"\"\>", 
+     ",", "\<\"newdir\"\>"}], "}"}]}], "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Helper functions", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`GetxActInfo", "[", "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Null", ",", "Null"}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`InstallxActArguments", "[", "%", 
+  "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"Sequence", "[", "]"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`InstallDialog", "[", 
+  RowBox[{"{", "%", "}"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"Nothing\"\>"], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`InstallPackages", "[", 
+  RowBox[{"{", "%%", "}"}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Public functions", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InstallxAct", "[", "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Installing xAct 1.0.5 ... done.\"\>"], "Print"],
+
+Cell[BoxData["\<\"Installation finished.\"\>"], "Print"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InstallPackage", "[", 
+  RowBox[{
+  "\"\<xTras\>\"", ",", "\"\<1.1.3\>\"", ",", 
+   "\"\<http://www.xact.es/xtras/download/xTras.v1.1.3.zip\>\""}], 
+  "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Installing xAct 1.0.5 ... done.\"\>"], "Print"],
+
+Cell[BoxData["\<\"Installing xTras 1.1.3 ... done.\"\>"], "Print"],
+
+Cell[BoxData["\<\"Installation finished.\"\>"], "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{801, 716},
+WindowMargins->{{Automatic, 386}, {152, Automatic}},
+ShowSelection->True,
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 5, \
+2011)",
+StyleDefinitions->"Default.nb"
+]
+
