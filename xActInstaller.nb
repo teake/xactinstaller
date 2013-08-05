@@ -156,7 +156,7 @@ Cell[BoxData["xActInstaller`Private`defaultInstallDir"], "Input"],
 Cell[BoxData["\<\"/Users/Teake/Library/Mathematica/Applications\"\>"], \
 "Output"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -254,8 +254,35 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"\<\"\"\>", ",", "\<\"\"\>", ",", "\<\"\"\>", 
      ",", "\<\"newdir\"\>"}], "}"}]}], "}"}]], "Output"]
-}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xActInstaller`Private`PackageListSetDir", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir1\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<dir2\>\""}], 
+      "}"}]}], "}"}], ",", "$Canceled"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"\"\>", ",", "\<\"\"\>", ",", "\<\"\"\>", 
+     ",", "\<\"dir1\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"\"\>", ",", "\<\"\"\>", ",", "\<\"\"\>", 
+     ",", "\<\"dir2\"\>"}], "}"}]}], "}"}]], "Output"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -293,11 +320,26 @@ Cell[BoxData["\<\"Nothing\"\>"], "Output"]
 Cell[BoxData[
  RowBox[{"xActInstaller`Private`InstallPackages", "[", 
   RowBox[{"{", "%%", "}"}], "]"}]], "Input"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["Public functions", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "InstallxAct"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"InstallxAct[] installs the latest version of \
+xAct.\\nInstallxAct[version] installs the given version number of \
+xAct.\\nInstallxAct[version, dir] installs xAct into the given \
+directory\\n\\nIf a newer version is found locally, nothing is installed. \
+Older versions are not overwritten but renamed.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3584707604-1095116"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -315,22 +357,22 @@ Cell[BoxData["\<\"Installation finished.\"\>"], "Print"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
+ RowBox[{"?", "InstallPackage"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"InstallPackage[name, version, url] installs the latest xAct \
+version and the given package from the URL.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3584707675-1095116"]
+}, Open  ]],
+
+Cell[BoxData[
  RowBox[{"InstallPackage", "[", 
   RowBox[{
   "\"\<xTras\>\"", ",", "\"\<1.1.3\>\"", ",", 
    "\"\<http://www.xact.es/xtras/download/xTras.v1.1.3.zip\>\""}], 
-  "]"}]], "Input"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData["\<\"Installing xAct 1.0.5 ... done.\"\>"], "Print"],
-
-Cell[BoxData["\<\"Installing xTras 1.1.3 ... done.\"\>"], "Print"],
-
-Cell[BoxData["\<\"Installation finished.\"\>"], "Print"]
-}, Open  ]]
-}, Open  ]]
-}, Open  ]]
+  "]"}]], "Input"]
+}, Closed]]
 }, Open  ]]
 },
 WindowSize->{801, 716},

@@ -1,46 +1,52 @@
 (* Mathematica Package *)
 
-(* :Title: xActInstaller *)
+(*
 
-(* :Context: xActInstaller` *)
+:Title: 	
 
-(* :Author: Teake Nutma *)
+	xActInstaller
 
-(* :Mathematica Versions: 8 - 9 *)
+:Context: 	
 
-(* :License: GPL *)
+	xActInstaller` 
 
-(* :Installation:
+:Author: 
 
-   This package can be invoked without local installation by 
-   Import["https://raw.github.com/teake/xactinstaller/master/xActInstaller/xActInstaller.m"];
+	Teake Nutma
 
-*)
+:Mathematica Versions:
 
-(* :Discussion:
+	8 - 9
 
-        Downloads and installs xAct and sub-packages automatically.
-        
-*)
-        
-(* :Example usage:
+:License: 
 
-        InstallxAct["1.0.5"]
+	GPL
 
-installs version 1.0.5 of xAct locally.
+:Installation:
 
-        InstallPackage["packageName", "packageVersion", "zipURL"]
+	This package can be invoked without local installation by 
+	Import["https://raw.github.com/teake/xactinstaller/master/xActInstaller/xActInstaller.m"];
 
-installs the latest version of xAct and also the given package from the zipURL.
+:Discussion:
 
-*)
+	Downloads and installs xAct and sub-packages automatically.
 
-(* :TODO:
+:Example usage:
+
+		InstallxAct["1.0.5"]
+
+	installs version 1.0.5 of xAct locally.
+
+		InstallPackage["packageName", "packageVersion", "zipURL"]
+
+	installs the latest version of xAct and also the given package from the zipURL.
+
+:TODO:
 
 	* Keep the Invar database when installing a new xAct version.
 	
 *)
-    
+
 
 (* First, get Rolf Mertig's CopyRemote package. *)
 Import["https://copyremote.googlecode.com/hg/CopyRemote/CopyRemote.m"]
@@ -254,7 +260,8 @@ InstallPackages[packagelist : { {__}... }] :=
 		]
 		,
 		"Nothing",
-		Null,
+		Null
+		,
 		_,
 		$Canceled
 	];
@@ -418,7 +425,8 @@ PackageListGetDir[{ {_,_,_,dir_,___}, ___ }] := dir;
 PackageListGetDir[___] := defaultInstallDir;
 
 (* Set the installation directory on a list of packages. *)
-PackageListSetDir[ packagelist : { {__}... }, dir_ ] := Module[{package = #}, package[[4]] = dir; package]& /@ packagelist;
+PackageListSetDir[ packagelist : { {__}... }, dir_String ] := Module[{package = #}, package[[4]] = dir; package]& /@ packagelist;
+PackageListSetDir[ packagelist_ , _ ] := packagelist;
 
 
 
