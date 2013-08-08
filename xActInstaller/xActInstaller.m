@@ -185,7 +185,7 @@ InstallPackage[ name_String, version_String, zipurl_String, installdir_, Options
 		
 		InstallPackages[
 			{
-				InstallxActArguments[ xactinfo, xactversion, installdir ],
+				CheckxActInstallation[ xactinfo, xactversion, installdir ],
 				{
 					name, 
 					version, 
@@ -204,7 +204,7 @@ InstallPackage[ name_String, version_String, zipurl_String, installdir_, Options
 	];
 
 
-InstallxAct[args___] := InstallPackages @ List @ InstallxActArguments[ GetxActInfo[], args ];
+InstallxAct[args___] := InstallPackages @ List @ CheckxActInstallation[ GetxActInfo[], args ];
 
 
 
@@ -240,13 +240,13 @@ GetxActInfo[] :=
 (* Returns Sequence[{"xAct", version, zipurl, installdir, "RemoveItems" -> "xAct" }], 
    or Sequence[] when there is an existing xAct install. *)
 
-InstallxActArguments[ { oldversion_, olddir_} ] :=
-	InstallxActArguments[ {oldversion, olddir}, xActLatest ];
+CheckxActInstallation[ { oldversion_, olddir_} ] :=
+	CheckxActInstallation[ {oldversion, olddir}, xActLatest ];
 
-InstallxActArguments[ { oldversion_, olddir_}, version_String ] :=
-	InstallxActArguments[ {oldversion, olddir}, version, Default ];
+CheckxActInstallation[ { oldversion_, olddir_}, version_String ] :=
+	CheckxActInstallation[ {oldversion, olddir}, version, Default ];
 
-InstallxActArguments[ { oldversion_, olddir_}, version_String, installdir_] :=
+CheckxActInstallation[ { oldversion_, olddir_}, version_String, installdir_] :=
 	Sequence @@ If[ VersionGreaterEqual[ oldversion, version ]
 	,
 		{}
