@@ -366,21 +366,30 @@ InstallDialog[{}] :=
 	];
 
 (* Normal install dialog with directory change button. *)
-InstallDialog[packagelist : { {__}... }] := 
-	ChoiceDialog[
-		StringJoin @ Riffle[
-			{
-				"The package(s)",
-				Sequence @@ ( ( "  " <> #[[1]] <> " " <>  #[[2]] )& /@ packagelist ),
-				"will be installed into the directory",
-				"  " <> PackageListGetDir @ packagelist,
-				"\nDo you want to continue?"
-			}, 
-			"\n"
-		],
-		{ "OK" -> "OK", "Choose directory" -> "ChooseDir", "Cancel" -> "Cancel" },
-		WindowTitle -> "xAct installer"
-	];  
+InstallDialog[packagelist : { {__}... }] :=
+	Module[
+		{
+			dir = PackageListGetDir @ packagelist
+		},
+		ChoiceDialog[
+			StringJoin @ Riffle[
+				{
+					"The package(s)",
+					Sequence @@ ( ( "  " <> #[[1]] <> " " <>  #[[2]] )& /@ packagelist ),
+					"will be installed into the directory",
+					"  " <> dir,
+					Sequence @@ If[ !MemberQ[$Path, dir],
+						"WARNING: this directory is not a member of $Path.",
+						{}
+					],
+					"\nDo you want to continue?"
+				}, 
+				"\n"
+			],
+			{ "OK" -> "OK", "Choose directory" -> "ChooseDir", "Cancel" -> "Cancel" },
+			WindowTitle -> "xAct installer"
+		]
+	]; 
 
 
 (* Installs a list of packages *without* a popup dialog. *)
