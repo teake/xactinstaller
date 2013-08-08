@@ -46,6 +46,66 @@
 	* Keep the Invar database when installing a new xAct version.
 	* Replace Mathematica version check with a check of tested versions / platforms.
 	* Replace CopyRemote with the (undocumented but native) FetchURL?
+
+:Flowchart:
+
+	+------------------------------+       +-----------------------------------------+
+	|        InstallPackage        |       |               InstallxAct               |
+	|------------------------------|       |-----------------------------------------|
+	|                              |       |                                         |
+	|  Installs a package; public  |       |  Installs the main xAct bundle; public  |
+	|                              |       |                                         |
+	+------------------------------+       +-----------------------------------------+
+	                            +             +
+	                            |             |
+	                            v             v
+	          +---------------------------------------------------+
+	          |             CheckxActInstallation                 |
+	          |---------------------------------------------------|
+	          |                                                   |
+	          |  Checks if the main bundle needs to be installed  |
+	          |                                                   |
+	          +---------------------------------------------------+
+	                                   +
+	                                   |
+	                                   v
+	                   +-------------------------------+
+	                   |         InstallPackages       |
+	                   |-------------------------------|
+	                   |                               |
+	                   |  Installs a list of packages  |
+	                   |                               |
+	                   +-------------------------------+
+	                                ^     +
+	                                |     |
+	                                +     v
+	                   +-------------------------------+
+	                   |         InstallDialog         |
+	                   |-------------------------------|
+	                   |                               |
+	                   |   Displays a choice dialog    |
+	                   |                               |
+	                   +-------------------------------+
+	                                   +
+	                                   |
+	                                   v
+	    +---------------------------------------------------------------+
+	    |                      InstallPackageList                       |
+	    |---------------------------------------------------------------|
+	    |                                                               |
+	    |  Threads the packages to be installed nicely over InstallZip  |
+	    |                                                               |
+	    +---------------------------------------------------------------+
+	                                  +
+	                                  |
+	                                  v
+	            +--------------------------------------------+
+	            |                 InstallZip                 |
+	            |--------------------------------------------|
+	            |                                            |
+	            |  Downloads and extract a zip file; public  |
+	            |                                            |
+	            +--------------------------------------------+
 	
 *)
 
