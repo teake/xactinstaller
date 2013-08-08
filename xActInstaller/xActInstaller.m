@@ -45,6 +45,7 @@
 
 	* Keep the Invar database when installing a new xAct version.
 	* Replace Mathematica version check with a check of tested versions / platforms.
+	* Replace CopyRemote with the (undocumented but native) FetchURL?
 	
 *)
 
@@ -81,6 +82,18 @@ InstallxAct::usage =
 
 InstallPackage::usage = 
 	"InstallPackage[name, version, url] installs the latest xAct version and the given package from the URL.";
+
+InstallZip::usage =
+	"InstallZip[zipurl, directory] downloads the zip and extracts it in the given directory.";
+
+InstallZip::noverify =
+	"The downloaded file `1` cannot be verified.";
+
+InstallZip::noextract =
+	"The downloaded file `1` cannot be unpacked in the directory `2`.";
+
+InstallZip::nodownload =
+	"The file `1` cannot be downloaded.";
 
 Begin["`Private`"]
 
@@ -138,7 +151,8 @@ Options[InstallPackage] ^=
 	{
 		"xActVersion" 		-> "Latest",
 		"ExtractPattern" 	-> Automatic,
-		"RemoveItems" 		-> Automatic
+		"RemoveItems" 		-> Automatic,
+		"MD5"				-> None
 	}
 
 InstallPackage[ name_String, version_String, zipurl_String, options___Rule ] :=
@@ -150,6 +164,7 @@ InstallPackage[ name_String, version_String, zipurl_String, installdir_, Options
 			xactversion 	= OptionValue["xActVersion"],
 			extractpattern	= OptionValue["ExtractPattern"],
 			removeitems 	= OptionValue["RemoveItems"],
+			md5				= OptionValue["MD5"],
 			xactinfo		= GetxActInfo[],
 			xactdir
 		},
@@ -182,7 +197,7 @@ InstallPackage[ name_String, version_String, zipurl_String, installdir_, Options
 						],
 						installdir
 					], 
-					"ExtractPattern" -> extractpattern, "RemoveItems" -> removeitems
+					"ExtractPattern" -> extractpattern, "RemoveItems" -> removeitems, "MD5" -> md5
 				}
 			}
 		];
@@ -349,12 +364,13 @@ InstallPackageList[ {packagename_String, packageversion_String, installzipargs__
  *************************************)
 
 
-(* Downloads a zip file from the internet, and upacks it to given directory. *)
+(* Downloads a zip file from the internet, and upacks it to the given directory. *)
 Options[InstallZip] ^= 
 	{
-		"ExtractPattern" -> "*",
-		"RemoveItems" -> {},
-		"RemoveAction" -> "Rename"
+		"ExtractPattern" 	-> "*",
+		"RemoveItems" 		-> {},
+		"RemoveAction" 		-> "Rename",
+		"MD5" 				-> None
 	};
 	
 InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] := 
@@ -363,10 +379,13 @@ InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] :=
 			localfile 		= CopyRemote`CopyRemote @ zipurl,
 			extractpattern 	= FileNameJoin @ { Sequence @@ OptionValue @ "ExtractPattern" },
 			removeitems		= OptionValue @ "RemoveItems",
-			removeaction	= OptionValue @ "RemoveAction"
+			removeaction	= OptionValue @ "RemoveAction",
+			md5				= OptionValue @ "MD5",
+			md5file
  		},
  		
  		If[ Not @ TrueQ @ Quiet @ FileExistsQ @ localfile,
+ 			Message[InstallZip::nodownload, zipurl];
  			Return @ $Failed
  		];
  		
@@ -374,6 +393,18 @@ InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] :=
  			removeaction = RenameItem,
  			removeaction = DeleteItem
  		];
+ 		
+ 		(* Check MD5 file hash. *)
+ 		If[ md5 =!= None,
+			Monitor[
+				md5file = IntegerString[ FileHash[ localfile, "MD5"], 16, 32],
+				"Verifying download."
+			];
+			If[ md5file =!= md5,
+				Message[InstallZip::noverify, FileNameTake @ localfile];
+				Return @ $Failed
+			];
+ 		];				
  		
  		removeaction[ FileNameJoin @ {extractdir, Sequence@@#} ]& /@ removeitems; 
  		
@@ -385,6 +416,7 @@ InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] :=
 			];
 			DeleteFile @ localfile;
 			,
+			Message[InstallZip::noextract, FileNameTake @ localfile, extractdir];
 			Return @ $Failed
 		];
  	];
