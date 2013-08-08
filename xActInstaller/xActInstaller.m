@@ -44,11 +44,22 @@
 :TODO:
 
 	* Keep the Invar database when installing a new xAct version.
+	* Replace Mathematica version check with a check of tested versions / platforms.
 	
 *)
 
 
-(* First, get Rolf Mertig's CopyRemote package. *)
+(* First, do a Mathematica version check. *)
+
+General::versions = 
+	"Loaded `1` version `2` but expected version `3` at least.";
+	
+If[System`$VersionNumber < 8.,
+	Message[General::versions, "Mathematica", System`$VersionNumber, 8.];
+	Abort[]
+];
+
+(* Get Rolf Mertig's CopyRemote package. *)
 Import["https://copyremote.googlecode.com/hg/CopyRemote/CopyRemote.m"]
 
 
@@ -61,7 +72,7 @@ Import["https://copyremote.googlecode.com/hg/CopyRemote/CopyRemote.m"]
  
 BeginPackage["xActInstaller`"]
 
-InstallxAct::usage 	= 
+InstallxAct::usage = 
 	"InstallxAct[] installs the latest version of xAct.\n" <>
 	"InstallxAct[version] installs the given version number of xAct.\n" <>
 	"InstallxAct[version, dir] installs xAct into the given directory\n\n" <>
