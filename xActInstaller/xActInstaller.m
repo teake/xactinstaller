@@ -170,6 +170,7 @@ xActZipURL[version_String] :=
 (* Lookup table for xAct version numbers. *) 
 (* TODO: are these dates correct? *)
 xCoreDateTable = {
+	{ {2014,  2, 15}, "1.1.0"},
 	{ {2013,  1, 27}, "1.0.5"},
 	{ {2012,  5,  5}, "1.0.4"},
 	{ {0,     0,  0}, Null}
@@ -202,6 +203,7 @@ Options[InstallPackage] ^=
 		"xActVersion" 		-> "Latest",
 		"ExtractPattern" 	-> Automatic,
 		"RemoveItems" 		-> Automatic,
+		"RenameExtension"	-> "old",
 		"MD5"				-> None
 	}
 
@@ -312,7 +314,8 @@ CheckxActInstallation[ { oldversion_, olddir_}, version_String, installdir_] :=
 				],
 				installdir
 			],
-			"RemoveItems" -> {"xAct"}
+			"RemoveItems" -> {"xAct"},
+			"RenameExtension" -> oldversion
 		}}
 	];
 
@@ -429,7 +432,8 @@ Options[InstallZip] ^=
 		"ExtractPattern" 	-> "*",
 		"RemoveItems" 		-> {},
 		"RemoveAction" 		-> "Rename",
-		"MD5" 				-> None
+		"MD5" 				-> None,
+		"RenameExtension"	-> "old"
 	};
 	
 InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] := 
@@ -440,6 +444,7 @@ InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] :=
 			removeitems		= OptionValue @ "RemoveItems",
 			removeaction	= OptionValue @ "RemoveAction",
 			md5				= OptionValue @ "MD5",
+			renameextension = OptionValue @ "RenameExtension",
 			md5file
  		},
  		
@@ -449,7 +454,7 @@ InstallZip[ zipurl_String, extractdir_?DirectoryQ, OptionsPattern[] ] :=
  		];
  		
  		If[ removeaction === "Rename",
- 			removeaction = RenameItem,
+ 			removeaction = RenameItem[#, renameextension]&,
  			removeaction = DeleteItem
  		];
  		
@@ -488,12 +493,12 @@ DeleteItem[file_] :=
 
 (* Renames a file or folder "file.ext" to "file.ext_old", 
    or if that's taken, "file.ext_old1" etc. *)
-RenameItem[file_?FileExistsQ, renameextension_String:"_old"] := 
+RenameItem[file_?FileExistsQ, renameextension_String:"old"] := 
 	Module[
 		{
 			newfile, existing, basenew
 		},
-		basenew		= FileNameTake[file] <> renameextension;
+		basenew		= FileNameTake[file] <> "_" <> renameextension;
 		existing 	= FileNameTake /@ FileNames[ basenew ~~ NumberString..., {ParentDirectory @ file} ];
 		newfile		= basenew <> If[
 			Length @ existing == 0,
